@@ -1,0 +1,94 @@
+:root {
+    --font-color: #0f101b;
+    --dark-color: #264271;
+    --normal-color: #9ecbd8;
+    --light-color: #ddeceb;
+    --contrast-color: #d33e2c;
+    --star-color: #d5db7c;
+    --border-radius: 20px;
+}
+
+body {
+    font-family: "Verdana", sans-serif;
+    background-image: url("../pictures/Stars.png");
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+}
+
+.page {
+    border-radius: var(--border-radius);
+    position: absolute;
+    top: 7%;
+    left: 10%;
+    width: 80%;
+    background-color: transparent;
+    color: var(--font-color);
+    padding: 10PX 20PX;
+    align-content: center;
+}
+
+.page_title {
+    opacity: 100%;
+    background-color: var(--dark-color);
+    color: var(--star-color);
+    border-radius: var(--border-radius);
+    border-color: var(--star-color);
+    border-style: ridge;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.chapter {
+    border-radius: var(--border-radius);
+    margin: 40px 0;
+    opacity: 100%;
+    background-color: var(--light-color);
+    color: var(--font-color);
+    padding: 0px;
+}
+
+.chapter_title {
+    padding: 10px;
+    text-align: center;
+    background-color: var(--dark-color);
+    color: var(--star-color);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.examples {
+    margin: 10px;
+    position: relative;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.example {
+    display: inline-block;
+    font-weight: bold;
+    background-color: var(--normal-color);
+    padding: 5px;
+}
+
+.example_image {
+    width: 200px;
+}
+
+.example_true {
+    color: var(--dark-color);
+}
+
+.example_false {
+    color: var(--contrast-color);
+}
