@@ -31,6 +31,12 @@
                     <input type="file" id="file" name="file" /></p>
                 <p><input type="submit" value="submit" /></p>
             </form>
+            {%if sample is defined %}
+            <div class="sample">
+                <img class='example_image' src="{{url_for('static', filename=sample['image'])}}">
+                <p class='example_category'>{{ sample['prediction']}}</p>
+            </div>
+            {%endif%}
         </div>
     </div>
 </body>
