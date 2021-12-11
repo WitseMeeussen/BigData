@@ -12,7 +12,7 @@ body {
     font-family: "Verdana", sans-serif;
     background-image: url("../pictures/Stars.png");
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 
 footer {
@@ -74,6 +74,14 @@ footer {
     transform: translateX(-50%);
 }
 
+.sample {
+    margin: 50px;
+    position: relative;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .example {
     display: inline-block;
     font-weight: bold;
@@ -82,7 +90,8 @@ footer {
 }
 
 .example_image {
-    width: 200px;
+    min-width: 300px;
+    max-width: 1000px;
 }
 
 .example_true {
@@ -91,4 +100,8 @@ footer {
 
 .example_false {
     color: var(--contrast-color);
+}
+
+.sample_prediction {
+    font-size: 40px;
 }
