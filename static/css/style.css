@@ -12,7 +12,7 @@ body {
     font-family: "Verdana", sans-serif;
     background-image: url("../pictures/Stars.png");
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 
 footer {
@@ -52,12 +52,13 @@ footer {
     border-radius: var(--border-radius);
     margin: 40px 0;
     opacity: 100%;
-    background-color: var(--light-color);
+    background-color: var(--normal-color);
     color: var(--font-color);
     padding: 0px;
 }
 
 .chapter_title {
+    font-size: 30px;
     padding: 10px;
     text-align: center;
     background-color: var(--dark-color);
@@ -67,7 +68,16 @@ footer {
 }
 
 .examples {
+    padding: 0px;
     margin: 10px;
+    position: relative;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sample {
+    margin: 50px;
     position: relative;
     width: fit-content;
     left: 50%;
@@ -77,18 +87,46 @@ footer {
 .example {
     display: inline-block;
     font-weight: bold;
-    background-color: var(--normal-color);
-    padding: 5px;
+    background-color: var(--light-color);
+    margin: 5px;
+    border-radius: 5px;
+    border-color: var(--dark-color);
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.example_category {
+    padding: 10px;
+    margin: 0px;
+    background-color: var(--dark-color);
+    color: var(--star-color);
 }
 
 .example_image {
-    width: 200px;
+    min-width: 300px;
+    max-width: 1000px;
 }
 
 .example_true {
     color: var(--dark-color);
+    text-align: center;
 }
 
 .example_false {
     color: var(--contrast-color);
+    text-align: center;
+}
+
+.sample {
+    font-size: 20px;
+}
+
+.sample_prediction {
+    font-size: 40px;
+}
+
+input {
+    size: 20px;
 }

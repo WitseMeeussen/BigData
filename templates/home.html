@@ -8,16 +8,16 @@
     <div class='page'>
         <div class='page_title'>
             <h1>Project Big Data: Image catigorization</h1>
-            <h3>Categorization of architectal styles</h3>
+            <h2>Categorization of architectal styles</h2>
         </div>
         <div class='chapter'>
             <h3 class="chapter_title">Examples</h3>
             <div class='examples'>
                 {% for example in examples %}
                 <div class='example'>
-                    <img class='example_image' src="{{url_for('static', filename=example['image'])}}">
                     <p class='example_category'>{{ example['category']}}</p>
-                    <p class="{{ example['correct_class']}}">{{ example['prediction']}}</p>
+                    <img class='example_image' src="{{url_for('static', filename=example['image'])}}">
+                    <p class="{{ example['correct_class']}}">Pred: {{ example['prediction']}}</p>
 
                 </div>
                 {%endfor%}
@@ -25,12 +25,20 @@
         </div>
         <div class='chapter'>
             <h3 class="chapter_title">Test your image</h3>
-            <form action="http://localhost:5000/testImage_post" method=post enctype=multipart/form-data>
-                <p>
-                    <label for="file"> select an image to test</label>
-                    <input type="file" id="file" name="file" /></p>
-                <p><input type="submit" value="submit" /></p>
-            </form>
+            <div class="sample">
+                <form action="http://localhost:5000/testImage_post" method=post enctype=multipart/form-data>
+                    <p>
+                        <label for="file"> select an image to test</label>
+                        <input type="file" id="file" name="file" /></p>
+                    <p><input type="submit" value="submit" /></p>
+                </form>
+                {%if sample['sample_class'] == 'sample_visable' %}
+                <div class="{{ sample['sample_class']}}">
+                    <p class='sample_prediction'>{{ sample['prediction']}}</p>
+                    <img class='example_image' src="{{url_for('static', filename=sample['image'])}}">
+                </div>
+                {%endif%}
+            </div>
         </div>
     </div>
 </body>
