@@ -10,21 +10,13 @@ from fastai.vision.all import *
 
 # fixes a dependancy on PosixPath by load_learner
 import pathlib
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './static/UploadFolder'
 
-DATAPATH = "./static/data/"
-# These are the categories used in the model and the data
-CATEGORIES = os.listdir(DATAPATH)
-ALLOWED_IMGTYPES = ['png','jpeg','gif','jfif','jpg']
-# uses top 20 images from the scrapers
-N_MAX = 20
 
 # learn is the model that is loaded from the pkl file. this file contains a model that predicts 14 different archtectal styles
-learn = load_learner('exportBig.pkl')
+
 
 def format_example(imgpath,cat,prediction):
    return {"image":"/data/"+imgpath,
@@ -39,10 +31,10 @@ def format_sample(imgpath,prediction):
 
 def get_examples():
    examples = []
-   for cat in CATEGORIES:
-      n = rnd.choice(range(N_MAX))
+   for cat in app.config['CATEGORIES']:
+      n = rnd.choice(range(app.config['N_MAX']))
       imgpath = cat+"/"+cat+str(n)+".png"
-      prediction = learn.predict(DATAPATH+imgpath)
+      prediction = app.config['learn'].predict(app.config['DATAPATH']+imgpath)
 
       examples.append(format_example(imgpath,cat,prediction))
    
@@ -65,7 +57,7 @@ def testImage_post():
    imgpath = secure_filename(image.filename)
 
    #regex function to see if uploaded file was an image, else return to home function
-   if re.sub('.*\\.','',imgpath) not in ALLOWED_IMGTYPES:
+   if re.sub('.*\\.','',imgpath) not in app.config['ALLOWED_IMGTYPES']:
       return redirect(url_for('home'))
 
    image.save(os.path.join(app.config['UPLOAD_FOLDER'], imgpath))
@@ -78,4 +70,15 @@ def testImage_post():
    return render_template('home.html',examples=examples,sample=sample)
 
 if __name__ == '__main__':
+   temp = pathlib.PosixPath
+   pathlib.PosixPath = pathlib.WindowsPath
+   app.config['UPLOAD_FOLDER'] = './static/UploadFolder'
+   app.config['DATAPATH']= "./static/data/"
+   # These are the categories used in the model and the data
+   app.config['CATEGORIES'] = os.listdir("./static/data/")
+   app.config['ALLOWED_IMGTYPES'] = ['png','jpeg','gif','jfif','jpg']
+   # uses top 20 images from the scrapers
+   app.config['N_MAX'] = 20
+
+   app.config['learn'] = load_learner('exportBig.pkl')
    app.run()
